@@ -6,6 +6,7 @@ import ComnCodMgr from "@/views/ComnCodMgr.vue";
 import ComnCodMgrDetail from "@/components/page/ComnCodMgr/ComnCodMgrDetail.vue";
 import Sale from "@/views/Sale.vue";
 import SaleTop from "@/views/SaleTop.vue";
+import ReturnChk from "@/views/ReturnChk.vue";
 
 const routes = [
     {
@@ -58,6 +59,17 @@ const routes = [
                         path: "salesTop.do",
                         name: "saleTop",
                         component: SaleTop
+                    }
+                ]
+            },
+            {
+                path: "work",
+                name: "work",
+                children: [
+                    {
+                        path: "returnChk.do",
+                        name: "returnChk",
+                        component: ReturnChk
                     }
                 ]
             }
