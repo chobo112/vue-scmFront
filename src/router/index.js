@@ -4,6 +4,8 @@ import Notice from "@/views/Notice.vue";
 import DashBoard from "@/views/DashBoard.vue";
 import ComnCodMgr from "@/views/ComnCodMgr.vue";
 import ComnCodMgrDetail from "@/components/page/ComnCodMgr/ComnCodMgrDetail.vue";
+import Sale from "@/views/Sale.vue";
+import SaleTop from "@/views/SaleTop.vue";
 
 const routes = [
     {
@@ -40,6 +42,22 @@ const routes = [
                         path: ":id",
                         name: "comnCodMgrDetail",
                         component: ComnCodMgrDetail
+                    }
+                ]
+            },
+            {
+                path: "executives",
+                name: "executives",
+                children: [
+                    {
+                        path: "sales.do",
+                        name: "sale",
+                        component: Sale
+                    },
+                    {
+                        path: "salesTop.do",
+                        name: "saleTop",
+                        component: SaleTop
                     }
                 ]
             }
