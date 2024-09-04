@@ -7,6 +7,7 @@ import ComnCodMgrDetail from "@/components/page/ComnCodMgr/ComnCodMgrDetail.vue"
 import Sale from "@/views/Sale.vue";
 import SaleTop from "@/views/SaleTop.vue";
 import ReturnChk from "@/views/ReturnChk.vue";
+import Storage from "@/views/Storage.vue";
 
 const routes = [
     {
@@ -59,6 +60,11 @@ const routes = [
                         path: "salesTop.do",
                         name: "saleTop",
                         component: SaleTop
+                    },
+                    {
+                        path: "storage.do",
+                        name: "storage",
+                        component: Storage
                     }
                 ]
             },
