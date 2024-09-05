@@ -28,14 +28,21 @@
                         <label> 비밀번호 </label>
                         <input required type="password" v-model="loginInfo.pwd" />
                     </div>
+                    <div class="joinDiv">
+                        <strong class="strong" @click="handlerJoin">[일반회원가입]</strong>
+                        <strong class="strong">[기업회원가입]</strong>
+                    </div>
+                    <div class="findDiv">
+                        <strong class="strong">[아이디/비밀번호 찾기]</strong>
+                    </div>
                     <div>
                         <button class="login-button" @click="handlerLogin">Login</button>
-                        <button class="signup-button">Sign Up</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <JoinMain v-if="modalState.modalState"></JoinMain>
 </template>
 
 <script setup>
@@ -44,10 +51,13 @@ import logo from "../../../assets/logo.png";
 import { ref } from "vue";
 import { useUserInfo } from "@/stores/userInfo";
 import { nullCheck } from "@/common/nullCheck";
+import { useModalStore } from "@/stores/modalState";
+import JoinMain from "./JoinMain.vue";
 
 const router = useRouter();
 const loginInfo = ref({});
 const userInfo = useUserInfo();
+const modalState = useModalStore();
 
 const handlerLogin = async () => {
     const isNull = nullCheck([
@@ -63,6 +73,10 @@ const handlerLogin = async () => {
         return;
     }
 };
+
+const handlerJoin = ()=>{
+    modalState.setModalState()
+}
 </script>
 
 <style scoped>
@@ -139,5 +153,14 @@ button {
 
 button:hover {
     opacity: 0.9;
+}
+.joinDiv{
+    font-size: small;
+}
+.findDiv{
+    font-size: small;
+}
+.strong{
+    cursor: pointer;
 }
 </style>

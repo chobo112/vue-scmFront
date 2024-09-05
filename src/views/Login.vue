@@ -4,4 +4,5 @@
 
 <script setup>
 import LoginMain from "../components/page/Login/LoginMain.vue";
+
 </script>
