@@ -4,10 +4,13 @@ import Notice from "@/views/Notice.vue";
 import DashBoard from "@/views/DashBoard.vue";
 import ComnCodMgr from "@/views/ComnCodMgr.vue";
 import ComnCodMgrDetail from "@/components/page/ComnCodMgr/ComnCodMgrDetail.vue";
+import Cart from "@/views/mypage/Cart.vue";
+import Test from "@/views/test.vue";
 import Sale from "@/views/Sale.vue";
 import SaleTop from "@/views/SaleTop.vue";
 import ReturnChk from "@/views/ReturnChk.vue";
 import Storage from "@/views/Storage.vue";
+
 
 const routes = [
     {
@@ -48,6 +51,18 @@ const routes = [
                 ]
             },
             {
+
+                path: "mypage",
+                name: "mypage",
+                children: [
+                    {
+                        path: "cart.do",
+                        name: "cart",
+                        component: Cart
+                    }
+              ]
+            }
+            {
                 path: "executives",
                 name: "executives",
                 children: [
@@ -80,6 +95,11 @@ const routes = [
                 ]
             }
         ]
+    },
+    {
+        path:'/test',
+        name:'test',
+        component: Test
     }
 ];
 
