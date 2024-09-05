@@ -8,6 +8,7 @@ import Sale from "@/views/Sale.vue";
 import SaleTop from "@/views/SaleTop.vue";
 import ReturnChk from "@/views/ReturnChk.vue";
 import Storage from "@/views/Storage.vue";
+import SupplyInfo from "@/views/SupplyInfo.vue";
 
 const routes = [
     {
@@ -76,6 +77,17 @@ const routes = [
                         path: "returnChk.do",
                         name: "returnChk",
                         component: ReturnChk
+                    }
+                ]
+            },
+            {
+                path: "management",
+                name: "management",
+                children: [
+                    {
+                        path: "supplyInfo.do",
+                        name: "supplyInfo",
+                        component: SupplyInfo
                     }
                 ]
             }

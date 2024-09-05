@@ -5,6 +5,7 @@
 </template>
 
 <script setup>
-import SaleMain from "@/components/page/executives/Sale/SaleMain.vue";
-import SaleSearch from "@/components/page/executives/Sale/SaleSearch.vue";
+import ContextBox from "@/components/common/ContextBox.vue";
+import SaleMain from "@/components/page/Executives/Sale/SaleMain.vue";
+import SaleSearch from "@/components/page/Executives/Sale/SaleSearch.vue";
 </script>
