@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import NoticeMain from "@/components/page/Notice/NoticeMain.vue";
-import NoticeSearch from "@/components/page/Notice/NoticeSearch.vue";
-import NoticeModal from "@/components/page/Notice/NoticeModal.vue";
 import ContextBox from "@/components/common/ContextBox.vue";
+import NoticeMain from "@/components/page/Board/Notice/NoticeMain.vue";
+import NoticeModal from "@/components/page/Board/Notice/NoticeModal.vue";
+import NoticeSearch from "@/components/page/Board/Notice/NoticeSearch.vue";
 export default {
     name: "Notice",
     components: { NoticeMain, NoticeSearch, NoticeModal, ContextBox }
