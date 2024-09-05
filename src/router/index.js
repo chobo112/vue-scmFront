@@ -61,7 +61,7 @@ const routes = [
                         component: Cart
                     }
               ]
-            }
+            },
             {
                 path: "executives",
                 name: "executives",
