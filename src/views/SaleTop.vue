@@ -4,5 +4,5 @@
 </template>
 <script setup lang="ts">
 import ContextBox from "@/components/common/ContextBox.vue";
-import SaleTopMain from "@/components/page/executives/Sale/SaleTop/SaleTopMain.vue";
+import SaleTopMain from "@/components/page/Executives/Sale/SaleTop/SaleTopMain.vue";
 </script>
