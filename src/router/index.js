@@ -1,9 +1,10 @@
 import Login from "@/views/Login.vue";
 import { createRouter, createWebHistory } from "vue-router";
-import Notice from "@/views/Notice.vue";
+import Notice from "@/views/Board/Notice.vue";
 import DashBoard from "@/views/DashBoard.vue";
 import ComnCodMgr from "@/views/ComnCodMgr.vue";
 import ComnCodMgrDetail from "@/components/page/ComnCodMgr/ComnCodMgrDetail.vue";
+import Inquiry from "@/views/Board/Inquiry.vue";
 import Cart from "@/views/mypage/Cart.vue";
 import Test from "@/views/test.vue";
 import Sale from "@/views/Sale.vue";
@@ -11,7 +12,6 @@ import SaleTop from "@/views/SaleTop.vue";
 import ReturnChk from "@/views/ReturnChk.vue";
 import Storage from "@/views/Storage.vue";
 import SupplyInfo from "@/views/SupplyInfo.vue";
-
 
 const routes = [
     {
@@ -32,6 +32,11 @@ const routes = [
                         path: "notice.do",
                         name: "notice",
                         component: Notice
+                    },
+                    {
+                        path: "inquiry.do",
+                        name: "inquiry",
+                        component: Inquiry
                     }
                 ]
             },
