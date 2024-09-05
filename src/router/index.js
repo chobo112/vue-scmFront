@@ -6,6 +6,11 @@ import ComnCodMgr from "@/views/ComnCodMgr.vue";
 import ComnCodMgrDetail from "@/components/page/ComnCodMgr/ComnCodMgrDetail.vue";
 import Cart from "@/views/mypage/Cart.vue";
 import Test from "@/views/test.vue";
+import Sale from "@/views/Sale.vue";
+import SaleTop from "@/views/SaleTop.vue";
+import ReturnChk from "@/views/ReturnChk.vue";
+import Storage from "@/views/Storage.vue";
+
 
 const routes = [
     {
@@ -46,6 +51,7 @@ const routes = [
                 ]
             },
             {
+
                 path: "mypage",
                 name: "mypage",
                 children: [
@@ -54,7 +60,38 @@ const routes = [
                         name: "cart",
                         component: Cart
                     }
-   
+              ]
+            }
+            {
+                path: "executives",
+                name: "executives",
+                children: [
+                    {
+                        path: "sales.do",
+                        name: "sale",
+                        component: Sale
+                    },
+                    {
+                        path: "salesTop.do",
+                        name: "saleTop",
+                        component: SaleTop
+                    },
+                    {
+                        path: "storage.do",
+                        name: "storage",
+                        component: Storage
+                    }
+                ]
+            },
+            {
+                path: "work",
+                name: "work",
+                children: [
+                    {
+                        path: "returnChk.do",
+                        name: "returnChk",
+                        component: ReturnChk
+                    }
                 ]
             }
         ]

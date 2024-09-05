@@ -40,7 +40,7 @@
                     <td>{{ comnGrp.use_poa }}</td>
                     <td>{{ comnGrp.fst_enlm_dtt }}</td>
                     <td>
-                        <a @click="() => handlerUpdateModal(e, comnGrp.grp_cod)">수정</a>
+                        <a @click="(e) => handlerUpdateModal(e, comnGrp.grp_cod)">수정</a>
                     </td>
                 </tr>
             </template>
@@ -103,6 +103,7 @@ const handlerInsertModal = () => {
 };
 
 const handlerUpdateModal = (event, grpCod) => {
+    event.stopPropagation();
     grpCodProp.value = grpCod;
     modalState.setModalState();
 };
