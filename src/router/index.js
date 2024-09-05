@@ -4,6 +4,8 @@ import Notice from "@/views/Notice.vue";
 import DashBoard from "@/views/DashBoard.vue";
 import ComnCodMgr from "@/views/ComnCodMgr.vue";
 import ComnCodMgrDetail from "@/components/page/ComnCodMgr/ComnCodMgrDetail.vue";
+import Cart from "@/views/mypage/Cart.vue";
+import Test from "@/views/test.vue";
 
 const routes = [
     {
@@ -42,8 +44,25 @@ const routes = [
                         component: ComnCodMgrDetail
                     }
                 ]
+            },
+            {
+                path: "mypage",
+                name: "mypage",
+                children: [
+                    {
+                        path: "cart.do",
+                        name: "cart",
+                        component: Cart
+                    }
+   
+                ]
             }
         ]
+    },
+    {
+        path:'/test',
+        name:'test',
+        component: Test
     }
 ];
 
