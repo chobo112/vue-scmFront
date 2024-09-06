@@ -12,6 +12,7 @@ import SaleTop from "@/views/SaleTop.vue";
 import ReturnChk from "@/views/ReturnChk.vue";
 import Storage from "@/views/Storage.vue";
 import SupplyInfo from "@/views/SupplyInfo.vue";
+import WarehouseInfo from "@/views/Management/WarehouseInfo.vue";
 
 const routes = [
     {
@@ -108,6 +109,11 @@ const routes = [
                         path: "supplyInfo.do",
                         name: "supplyInfo",
                         component: SupplyInfo
+                    },
+                    {
+                        path: "warehouseInfo.do",
+                        name: "warehouseInfo",
+                        component: WarehouseInfo
                     }
                 ]
             }
