@@ -7,6 +7,12 @@
             <div>
                 <table class="table">
                     <tbody>
+                        <tr v-if="provider && provider !== undefined">
+                            <th>회사명<span class="font_red">*</span></th>
+                            <td>
+                                <input type="text" v-model="provider.cust_name" readonly class="componyInput">
+                            </td>
+                        </tr>
                         <tr>
                             <th>아이디<span class="font_red">*</span></th>
                                 <td colspan="2">
@@ -38,7 +44,7 @@
                             <th>성별</th>
                             <td>
                                 <select v-model="userInfo.gender_cd">
-                                    <option value="" selected="selected">선택</option>
+                                    <option :value="1==1 ? 'yes' : 'no'" selected="selected">선택</option>
                                     <option value="male">남자</option>
                                     <option value="female">여자</option>
                                 </select>
@@ -81,17 +87,20 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr v-if="!provider && provider == undefined">
                             <th>회원 유형<span class="font_red">*</span></th>
-                            <td colspan="3">
-                                <select v-model="userInfo.user_type">
-                                    <option value="A" selected="selected">임직원</option>
+                            <td colspan="3" >
+                                <select  v-model="userInfo.user_type">
+                                    <option value="A" selected>임직원</option>
                                     <option value="C">관리 사원</option>
                                     <option value="E">구매 담당</option>
                                     <option value="D">배송 담당</option>
                                     <option value="B">고객</option>
                                 </select>
                             </td>
+                        </tr>
+                        <tr v-else>
+                            <input v-model="userInfo.user_type" type="hidden" value="B">
                         </tr>
                     </tbody>
                 </table>
@@ -110,8 +119,11 @@ import { useModalStore } from '@/stores/modalState';
 import axios from 'axios';
 
 const modalState = useModalStore();
-const userInfo = ref({});
+ const userInfo = ref({
+    user_type: 'A'
+    });
 const checkIdResult = ref();
+const provider = inject("providedValue");
 
 const idCheck = () => {
     const idRules = /^[a-z0-9]{6,20}$/g;
@@ -130,6 +142,13 @@ const idCheck = () => {
         });
 }
 
+onMounted(()=>{
+    console.log(provider.value)
+   
+    if(provider && provider.value !== undefined){
+        userInfo.value.user_type = 'B'
+    }
+})
 const join = () => {
     if (checkIdResult.value !== 0) {
         document.getElementById("loginIdInput").focus();
@@ -219,10 +238,12 @@ const join = () => {
     axios
         .post(`/api/registerJson.do`, {
             ...userInfo.value
+            ,hidden_cust_id: provider.value?.cust_id
         })
         .then((res) => {
             if (res.data.result === "SUCCESS") {
                 alert('회원가입 완료');
+                modalState.setModalState()
             }
         })
         .catch((err) => {
@@ -260,7 +281,7 @@ const post = () => {
 }
 </script>
 
-<style>
+<style scoped>
 .backdrop {
     top: 0;
     left: 0;
@@ -378,6 +399,9 @@ const post = () => {
 }
 input.numberInput{
     width: 65px;
+}
+.componyInput{
+    background-color: #e9ecef;
 }
 
 </style>
