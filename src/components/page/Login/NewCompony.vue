@@ -71,7 +71,10 @@ const saveCust = () => {
     axios
         .post(`/api/cust/CustSaveJson.do`, {...custInfo.value})
         .then((res) => {
-            console.log(res);
+            if(res.data.resultMsg == "SUCCESS"){
+                modalState3.setModalState3();
+                alert("회원가입완료")
+            }
         });
 };
 
