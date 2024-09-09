@@ -17,6 +17,7 @@ import OrderCompany from "@/views/Management/OrderCompany.vue";
 import Product from "@/views/Product/Product.vue";
 import Order from "@/views/mypage/Order.vue";
 import Obtain from "@/views/Obtain.vue";
+import OrderList from "@/views/direction/OrderList.vue";
 
 const routes = [
     {
@@ -149,6 +150,17 @@ const routes = [
                         path: "obtain.do",
                         name: "obtain",
                         component: Obtain
+                    }
+                ]
+            },
+            {
+                path: "direction",
+                name: "direction",
+                children: [
+                    {
+                        path: "orderList.do",
+                        name: "orderList",
+                        component: OrderList
                     }
                 ]
             }
