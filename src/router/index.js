@@ -17,6 +17,7 @@ import OrderCompany from "@/views/Management/OrderCompany.vue";
 import Product from "@/views/Product/Product.vue";
 import Order from "@/views/mypage/Order.vue";
 import Obtain from "@/views/Obtain.vue";
+import OrderChk from "@/views/Work/OrderChk.vue";
 
 const routes = [
     {
@@ -106,6 +107,11 @@ const routes = [
                         path: "returnChk.do",
                         name: "returnChk",
                         component: ReturnChk
+                    },
+                    {
+                        path: "orderChk.do",
+                        name: "orderChk",
+                        component: OrderChk
                     }
                 ]
             },
