@@ -18,6 +18,8 @@ import Product from "@/views/Product/Product.vue";
 import Order from "@/views/mypage/Order.vue";
 import Obtain from "@/views/Obtain.vue";
 import OrderChk from "@/views/Work/OrderChk.vue";
+import OrderList from "@/views/direction/OrderList.vue";
+import Return from "@/views/mypage/Return.vue";
 
 const routes = [
     {
@@ -75,6 +77,11 @@ const routes = [
                         path: "order.do",
                         name: "order",
                         component: Order
+                    },
+                    {
+                        path: "return.do",
+                        name: "return",
+                        component: Return
                     }
                 ]
             },
@@ -155,6 +162,17 @@ const routes = [
                         path: "obtain.do",
                         name: "obtain",
                         component: Obtain
+                    }
+                ]
+            },
+            {
+                path: "direction",
+                name: "direction",
+                children: [
+                    {
+                        path: "orderList.do",
+                        name: "orderList",
+                        component: OrderList
                     }
                 ]
             }

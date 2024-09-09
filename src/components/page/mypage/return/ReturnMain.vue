@@ -1,8 +1,8 @@
 <template>
-  <div>서치</div>
+    <div>반품 ㅎㅇ</div>
 </template>
 
-<script>
+<script setup>
 
 </script>
 
