@@ -138,6 +138,10 @@ const routes = [
                         path: "product.do",
                         name: "product",
                         component: Product
+                    }
+                ]
+            },
+            {
                 path: "business",
                 name: "business",
                 children: [
