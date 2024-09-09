@@ -16,7 +16,7 @@
                     <td>{{ product.item_name }} </td>
                     <td>{{ product.manufac }} </td>
                     <td>{{ product.item_price > 0 ? product.item_price : 0 }} </td>
-                    <td><button>구매</button></td>
+                    <td><button @click="handlerModal(product.item_code)">구매</button></td>
                 </tr>
             </tbody>
             <tbody v-else>
@@ -31,17 +31,25 @@
             :maxPagesShown="5"
             :onClick="searchList"
             v-model="cPage"/>
+        <ProductModal 
+            v-if="modalState.modalState"
+            :itemCode="itemCode"
+        />
     </div>
 </template>
 
 <script setup>
 import axios from 'axios';
 import Pagination from '@/components/common/Pagination.vue';
+import { useModalStore } from '@/stores/modalState';
+import ProductModal from './ProductModal.vue';
 
 const cPage = ref(1);
 const cnt = ref(0);
 const productInfo = ref([]);
 const route = useRoute();
+const modalState = useModalStore();
+const itemCode = ref();
 
 const searchList = () => {
     let param = new URLSearchParams({
@@ -59,6 +67,11 @@ const searchList = () => {
 
 watch(route, searchList);
 onMounted(() => {searchList()});
+
+const handlerModal = (item_code) => {
+    itemCode.value = item_code;
+    modalState.setModalState();
+}
 
 </script>
 
