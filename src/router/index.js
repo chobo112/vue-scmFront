@@ -15,6 +15,8 @@ import SupplyInfo from "@/views/SupplyInfo.vue";
 import WarehouseInfo from "@/views/Management/WarehouseInfo.vue";
 import OrderCompany from "@/views/Management/OrderCompany.vue";
 import Product from "@/views/Product/Product.vue";
+import Order from "@/views/mypage/Order.vue";
+import Obtain from "@/views/Obtain.vue";
 
 const routes = [
     {
@@ -60,7 +62,6 @@ const routes = [
                 ]
             },
             {
-
                 path: "mypage",
                 name: "mypage",
                 children: [
@@ -68,8 +69,13 @@ const routes = [
                         path: "cart.do",
                         name: "cart",
                         component: Cart
+                    },
+                    {
+                        path: "order.do",
+                        name: "order",
+                        component: Order
                     }
-              ]
+                ]
             },
             {
                 path: "executives",
@@ -134,12 +140,23 @@ const routes = [
                         component: Product
                     }
                 ]
+            },
+            {
+                path: "business",
+                name: "business",
+                children: [
+                    {
+                        path: "obtain.do",
+                        name: "obtain",
+                        component: Obtain
+                    }
+                ]
             }
         ]
     },
     {
-        path:'/test',
-        name:'test',
+        path: "/test",
+        name: "test",
         component: Test
     }
 ];
