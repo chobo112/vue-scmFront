@@ -14,6 +14,7 @@ import Storage from "@/views/Storage.vue";
 import SupplyInfo from "@/views/SupplyInfo.vue";
 import WarehouseInfo from "@/views/Management/WarehouseInfo.vue";
 import OrderCompany from "@/views/Management/OrderCompany.vue";
+import Product from "@/views/Product/Product.vue";
 
 const routes = [
     {
@@ -120,6 +121,17 @@ const routes = [
                         path: "orderCompany.do",
                         name: "orderCompany",
                         component: OrderCompany
+                    }
+                ]
+            },
+            {
+                path: "product",
+                name: "product",
+                children: [
+                    {
+                        path: "product.do",
+                        name: "product",
+                        component: Product
                     }
                 ]
             }
