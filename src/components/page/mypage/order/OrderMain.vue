@@ -47,8 +47,15 @@
                 </template>
             </tbody>
         </table>
-    </div>
-    <ReturnOrder v-if="modalState.modalState" :props="props"/>
+        <Pagination
+                :totalItems="cnt"
+                :itemsPerPage="5"
+                :maxPagesShown="5"
+                :onClick="orderHistoryList"
+                v-model="cpage"
+            />
+        </div>
+        <ReturnOrder v-if="modalState.modalState" :props="props"/>
 </template>
 
 <script setup>
@@ -56,7 +63,9 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useModalStore } from '@/stores/modalState';
 import ReturnOrder from './ReturnOrder.vue';
+import Pagination from '@/components/common/Pagination.vue';
 
+    const cpage = ref(1);
     const orderList = ref();
     const cnt = ref(0);
     const orderParam = ref({
@@ -69,7 +78,7 @@ import ReturnOrder from './ReturnOrder.vue';
     const orderHistoryList = () => {
         axios
             .post(`/api/mypage/orderHistoryJson.do`, {
-                cpage: 1,
+                cpage: 1 || cpage,
                 pageSize: 5,
                 startDate: orderParam.value.startDate,
                 endDate: orderParam.value.endDate
