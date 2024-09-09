@@ -71,7 +71,7 @@ import axios from 'axios';
 
 </script>
 
-<style>
+<style scoped>
 /* 전체 배경 */
 .backdrop {
     top: 0;
