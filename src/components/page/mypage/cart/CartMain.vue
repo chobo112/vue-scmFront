@@ -186,7 +186,7 @@ import axios from 'axios';
   </script>
   
 
-<style>
+<style scoped>
   .container {
             width: 100%;
             padding-top: 20px;
