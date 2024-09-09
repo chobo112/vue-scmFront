@@ -14,7 +14,7 @@
                     포기한 순간이 성공하기 5 분전이기 쉽다. <br />
                     실패에서 더 많이 배운다. <br />
                     실패를 반복해서 경험하면 실망하기 쉽다. <br />
-                    하지만 포기를 생각해선 안된다.실패는 언제나 중간역이지 종착역은 아니다. <br />s
+                    하지만 포기를 생각해선 안된다.실패는 언제나 중간역이지 종착역은 아니다. <br />
                 </div>
                 <div>-이대희, ‘1 % 의 가능성을 희망으로 바꾼 사람들’ 에서</div>
             </div>
@@ -28,14 +28,20 @@
                         <label> 비밀번호 </label>
                         <input required type="password" v-model="loginInfo.pwd" />
                     </div>
+                    <div class="joinDiv">
+                        <strong class="strong" @click="handlerJoin">[일반회원가입]</strong>
+                        <strong class="strong" @click="handlerComponyModal">[기업회원가입]</strong>
+                    </div>
                     <div>
                         <button class="login-button" @click="handlerLogin">Login</button>
-                        <button class="signup-button">Sign Up</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <JoinMain v-if="modalState.modalState"></JoinMain>
+    <ComponySearch v-if="modalState2.modalState2"></ComponySearch>
+    <NewCompony v-if="modalState3.modalState3"></NewCompony>
 </template>
 
 <script setup>
@@ -44,10 +50,20 @@ import logo from "../../../assets/logo.png";
 import { ref } from "vue";
 import { useUserInfo } from "@/stores/userInfo";
 import { nullCheck } from "@/common/nullCheck";
+import { useModalStore, useModalStore3 } from "@/stores/modalState";
+import { useModalStore2 } from "@/stores/modalState";
+import JoinMain from "./JoinMain.vue";
+import ComponySearch from "./ComponySearch.vue";
+import NewCompony from './NewCompony.vue';
 
 const router = useRouter();
 const loginInfo = ref({});
 const userInfo = useUserInfo();
+const modalState = useModalStore();
+const modalState2 = useModalStore2();
+const modalState3 = useModalStore3();
+
+
 
 const handlerLogin = async () => {
     const isNull = nullCheck([
@@ -63,6 +79,15 @@ const handlerLogin = async () => {
         return;
     }
 };
+
+const handlerJoin = ()=>{
+    modalState.setModalState()
+}
+const handlerComponyModal = ()=>{
+    modalState2.setModalState2();
+}
+
+
 </script>
 
 <style scoped>
@@ -139,5 +164,14 @@ button {
 
 button:hover {
     opacity: 0.9;
+}
+.joinDiv{
+    font-size: small;
+}
+.findDiv{
+    font-size: small;
+}
+.strong{
+    cursor: pointer;
 }
 </style>
