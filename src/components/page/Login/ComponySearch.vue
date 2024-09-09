@@ -8,7 +8,7 @@
             <div>
                 <span>기업을 선택해 주세요</span>
                 <select v-model="selectedCust">
-                    <option value="">기업을 선택하세요</option>
+                    <option disabled selected value="">기업을 선택하세요</option>
                     <option v-for="cust in custList" :key="cust.cust_id" :value="cust" >
                         {{ cust.cust_name }}
                     </option>
@@ -29,11 +29,11 @@ import axios from 'axios';
 
 
 
-    const custList = ref();
+    const custList = ref({});
     const modalState = useModalStore()
     const modalState2 = useModalStore2();
     const modalState3 = useModalStore3();
-    const selectedCust = ref();
+    const selectedCust = ref('');
     const emit = defineEmits(["componySelect"]);
     const provider = inject("providedValue");
    

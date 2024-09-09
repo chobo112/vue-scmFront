@@ -32,9 +32,6 @@
                         <strong class="strong" @click="handlerJoin">[일반회원가입]</strong>
                         <strong class="strong" @click="handlerComponyModal">[기업회원가입]</strong>
                     </div>
-                    <div class="findDiv">
-                        <strong class="strong">[아이디/비밀번호 찾기]</strong>
-                    </div>
                     <div>
                         <button class="login-button" @click="handlerLogin">Login</button>
                     </div>

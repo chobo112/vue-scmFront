@@ -6,23 +6,23 @@
             </div>
             <div>
                 <span>기업명<span class="font_red">*</span></span>
-                <input type="text" v-model="custInfo.cust_name">
+                <input type="text" v-model="custInfo.cust_name" id="custNameInput">
             </div>
             <div>
                 <span>사업자번호<span class="font_red">*</span></span>
-                <input type="text" v-model="custInfo.biz_num"/>
+                <input type="text" v-model="custInfo.biz_num" id="bizNumInput"/>
             </div>
             <div>
                 <span>회사연락처<span class="font_red">*</span></span>
-                <input type="text" v-model="custInfo.cust_ph">
+                <input type="text" v-model="custInfo.cust_ph" id="custPhInput">
             </div>
             <div>
                 <span>fax 번호<span class="font_red">*</span></span>
-                <input type="text" v-model="custInfo.cust_fax">
+                <input type="text" v-model="custInfo.cust_fax" id="custFaxInput">
             </div>
             <div>
                 <span>산업군 입력<span class="font_red">*</span></span>
-                <input type="text" v-model="custInfo.industry_cod">
+                <input type="text" v-model="custInfo.industry_cod" id="industryCodInput">
             </div>
             <div class="zipDiv">
                 <div class="zipInputContainer">
@@ -38,18 +38,18 @@
                 <input type="text" v-model="custInfo.cust_addr" id="address">
             </div>
             <div>
-                <span>상세주소</span>
-                <input type="text" v-model="custInfo.cust_detail_addr">
+                <span>상세주소<span class="font_red">*</span></span>
+                <input type="text" v-model="custInfo.cust_detail_addr" id="custDetailAddrInput">
             </div>
             <div>
-                <span>담당자명</span>
-                <input type="text" v-model="custInfo.cust_person">
+                <span>담당자명<span class="font_red">*</span></span>
+                <input type="text" v-model="custInfo.cust_person" id="custPersonInput">
             </div>
             <div>
                 <span class="telSpan">담당자 전화번호<span class="font_red">*</span></span>
-                <input type="text" v-model="custInfo.user_tel1" class="telInput">-
-                <input type="text" v-model="custInfo.user_tel2" class="telInput">-
-                <input type="text" v-model="custInfo.user_tel3" class="telInput">
+                <input type="text" v-model="custInfo.user_tel1" class="telInput" id="telInput1">-
+                <input type="text" v-model="custInfo.user_tel2" class="telInput" id="telInput2">-
+                <input type="text" v-model="custInfo.user_tel3" class="telInput" id="telInput3">
             </div>
             <div>
                 <button @click="saveCust">회원가입완료</button>
@@ -68,6 +68,63 @@ const modalState3 = useModalStore3();
 const custInfo = ref({});
 
 const saveCust = () => {
+
+    if(custInfo.value.cust_name == '' || custInfo.value.cust_name == null){
+        alert('기업명을 확인하세요')
+        document.getElementById("custNameInput").focus();
+        return;
+    }
+    if(custInfo.value.biz_num == '' || custInfo.value.biz_num == null){
+        alert('사업자번호를 확인하세요')
+        document.getElementById("bizNumInput").focus();
+        return;
+    }
+    if(custInfo.value.cust_ph == '' || custInfo.value.cust_ph == null){
+        alert('회사연락처를 확인하세요')
+        document.getElementById("custPhInput").focus();
+        return;
+    }
+    if(custInfo.value.cust_fax == '' || custInfo.value.cust_fax == null){
+        alert('Fax번호를 확인하세요')
+        document.getElementById("custFaxInput").focus();
+        return;
+    }
+    if(custInfo.value.industry_cod == '' || custInfo.value.industry_cod == null){
+        alert('산업군 입력을 확인하세요')
+        document.getElementById("industryCodInput").focus();
+        return;
+    }
+    if(custInfo.value.cust_zip == '' || custInfo.value.cust_zip == null){
+        alert('우편번호를 확인하세요')
+        document.getElementById("zipInput").focus();
+        return;
+    }
+    if(custInfo.value.cust_detail_addr == '' || custInfo.value.cust_detail_addr == null){
+        alert('상세주소를 확인하세요')
+        document.getElementById("custDetailAddrInput").focus();
+        return;
+    }
+    if(custInfo.value.cust_person == '' || custInfo.value.cust_person == null){
+        alert('담당자명을 확인하세요')
+        document.getElementById("custPersonInput").focus();
+        return;
+    }
+    if(custInfo.value.user_tel1 == '' || custInfo.value.user_tel1 == null){
+        alert('담당자 전화번호를 확인하세요')
+        document.getElementById("telInput1").focus();
+        return;
+    }
+    if(custInfo.value.user_tel2 == '' || custInfo.value.user_tel2 == null){
+        alert('담당자 전화번호를 확인하세요')
+        document.getElementById("telInput2").focus();
+        return;
+    }
+    if(custInfo.value.user_tel3 == '' || custInfo.value.user_tel3 == null){
+        alert('담당자 전화번호를 확인하세요')
+        document.getElementById("telInput3").focus();
+        return;
+    }
+
     axios
         .post(`/api/cust/CustSaveJson.do`, {...custInfo.value})
         .then((res) => {
@@ -92,6 +149,8 @@ const post = () => {
         }
     }).open();
 };
+
+
 </script>
 
 <style scoped>
