@@ -94,7 +94,6 @@ const postSuccess = () => {
     });
     queryClient.setQueryData(["deliveryDetail", deliveryNumProp], (deliveryObject) => {
         deliveryObject.deliveryState = "배송완료";
-        return { ...deliveryObject };
     });
 };
 
