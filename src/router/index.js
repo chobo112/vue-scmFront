@@ -20,6 +20,7 @@ import Obtain from "@/views/Obtain.vue";
 import OrderChk from "@/views/Work/OrderChk.vue";
 import OrderList from "@/views/direction/OrderList.vue";
 import Return from "@/views/mypage/Return.vue";
+import DeliveryChk from "@/views/DeliveryChk.vue";
 
 const routes = [
     {
@@ -119,6 +120,11 @@ const routes = [
                         path: "orderChk.do",
                         name: "orderChk",
                         component: OrderChk
+                    },
+                    {
+                        path: "deliveryChk.do",
+                        name: "deliveryChk",
+                        component: DeliveryChk
                     }
                 ]
             },
