@@ -145,7 +145,7 @@ import axios from 'axios';
 
     // 아이템을 제거하는 함수
     const removeItem = (itemCode) => {
-        axios.post('/api/mypge/cartDelete.do', {
+        axios.post('/api/mypage/cartDelete.do', {
             item_code : itemCode
         })
         .then(()=>{
