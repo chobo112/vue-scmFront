@@ -78,7 +78,7 @@ import Pagination from '@/components/common/Pagination.vue';
     const orderHistoryList = () => {
         axios
             .post(`/api/mypage/orderHistoryJson.do`, {
-                cpage: 1 || cpage,
+                cpage: cpage.value || 1,
                 pageSize: 5,
                 startDate: orderParam.value.startDate,
                 endDate: orderParam.value.endDate
@@ -233,6 +233,7 @@ a {
 .conTitle {
     font-size: 18px;
     margin-bottom: 20px;
+    float: right;
 }
 
 .fr {
