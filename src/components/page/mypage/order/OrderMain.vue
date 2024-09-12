@@ -1,19 +1,5 @@
 <template>
     <div>
-        <p class="conTitle">
-            <span class="fr">
-                <button @click="setToday">오늘</button>
-                <button @click="setWeek">일주일</button>
-                <button @click="setMonth">한달</button>
-                
-                <input type="date" id="startDate" v-model="orderParam.startDate">
-                ~
-                <input type="date" id="endDate" v-model="orderParam.endDate">
-                <button @click="orderHistoryList">검색</button>
-            </span>
-        </p>
-    </div>
-    <div>
         <table>
             <thead>
                 <tr>
@@ -27,7 +13,10 @@
                 </tr>
             </thead>
             <tbody>
-                <template v-if="cnt > 0">
+                <tr v-if="isLoading">
+                    <td colspan="7">로딩 중...</td>
+                </tr>
+                <template v-else-if="cnt > 0">
                     <tr v-for="list in orderList" :key="list.seq">
                         <td>{{ list.item_code}}</td>
                         <td>{{ list.item_name }}</td>
@@ -42,7 +31,7 @@
                 </template>
                 <template v-else>
                     <tr>
-                        <td>구매내역이 없습니다</td>
+                        <td colspan="7">구매내역이 없습니다</td>
                     </tr>
                 </template>
             </tbody>
@@ -51,7 +40,7 @@
                 :totalItems="cnt"
                 :itemsPerPage="5"
                 :maxPagesShown="5"
-                :onClick="orderHistoryList"
+                :onClick="refetch"
                 v-model="cpage"
             />
         </div>
@@ -59,43 +48,38 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import axios from 'axios';
 import { useModalStore } from '@/stores/modalState';
 import ReturnOrder from './ReturnOrder.vue';
 import Pagination from '@/components/common/Pagination.vue';
+import { useQuery } from '@tanstack/vue-query';
 
     const cpage = ref(1);
-    const orderList = ref();
-    const cnt = ref(0);
-    const orderParam = ref({
-        startDate: '',
-        endDate: '',
-    });
+    const orderList = ref([]);
+    const cnt = ref(1);
     const modalState = useModalStore();
     const props = ref();
+    const provider = inject("providedValue");
+    
 
-    const orderHistoryList = () => {
-        axios
+    const orderHistoryList = async () => {
+        const result = await axios
             .post(`/api/mypage/orderHistoryJson.do`, {
                 cpage: cpage.value || 1,
                 pageSize: 5,
-                startDate: orderParam.value.startDate,
-                endDate: orderParam.value.endDate
+                ...provider.value
             })
-            .then((res) => {
-                orderList.value = res.data.orderList;
-                cnt.value = res.data.cnt;
-            });
+        return result.data;
     };
 
     const formatDate = (timeStamp) => {
-    const date = new Date(timeStamp);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+        const date = new Date(timeStamp);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
 
-    return `${year}-${month}-${day}`;
+        return `${year}-${month}-${day}`;
     };
 
     const formatWon = (price) => {
@@ -104,39 +88,22 @@ import Pagination from '@/components/common/Pagination.vue';
         return `${price1}` + `원`;
     };
 
-    const initializeDates = () => {
-        const today = new Date();
-        orderParam.value.startDate = formatDate(today);
-        orderParam.value.endDate = formatDate(today);
-    };
+    watch(provider, async ()=>{
+        const data = await orderHistoryList();
+        if(data){
+            orderList.value = data.orderList;
+            cnt.value = data.cnt;
+        }
+    })
 
-    const setToday = () => {
-        const today = new Date();
-        orderParam.value.startDate = formatDate(today);
-        orderParam.value.endDate = formatDate(today);
-        orderHistoryList();
-    };
-
-    const setWeek = () => {
-        const today = new Date();
-        const weekAgo = new Date(today.setDate(today.getDate() - 7));
-        orderParam.value.startDate = formatDate(weekAgo);
-        orderParam.value.endDate = formatDate(new Date());
-        orderHistoryList();
-    };
-
-    const setMonth = () => {
-        const today = new Date();
-        const monthAgo = new Date(today.setMonth(today.getMonth() - 1));
-        orderParam.value.startDate = formatDate(monthAgo);
-        orderParam.value.endDate = formatDate(new Date());
-        orderHistoryList();
-    };
-
-    onMounted(() => {
-        initializeDates(); 
-        orderHistoryList();
-    });
+    const {isLoading ,refetch} = useQuery({
+        queryKey : ["orderHistoryQuery", provider.value],
+        queryFn: orderHistoryList,
+        select: (data)=>{
+            orderList.value = data.orderList;
+            cnt.value = data.cnt;
+        }
+    })
 
     const returnOrder = (list)=>{
         if(list.delivery_date === undefined){
