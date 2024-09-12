@@ -25,7 +25,7 @@
                                 :key="custProdutList.noti_seq"
                             >
                                 <td>{{ custProdutList.item_code }}</td>
-                                <td>{{ custProdutList.item_name }}원</td>
+                                <td>{{ custProdutList.item_name }}</td>
                                 <td>{{ Number(custProdutList.item_price).toLocaleString() }}원</td>
                                 <td>{{ custProdutList.obtain_count }}개</td>
                             </tr>
