@@ -31,6 +31,7 @@ const handlerSearch = () => {
 };
 </script>
 <style lang="scss" scoped>
+
 .search-box {
     margin-bottom: 10px;
     display: block;

@@ -21,6 +21,7 @@ import OrderChk from "@/views/Work/OrderChk.vue";
 import OrderList from "@/views/direction/OrderList.vue";
 import Return from "@/views/mypage/Return.vue";
 import DeliveryChk from "@/views/DeliveryChk.vue";
+import ReturnHistory from "@/views/ReturnHistory.vue";
 
 const routes = [
     {
@@ -168,6 +169,11 @@ const routes = [
                         path: "obtain.do",
                         name: "obtain",
                         component: Obtain
+                    },
+                    {
+                        path: "return.do",
+                        name: "return",
+                        component: ReturnHistory
                     }
                 ]
             },
