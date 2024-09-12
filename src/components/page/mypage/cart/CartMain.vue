@@ -145,7 +145,7 @@ import axios from 'axios';
 
     // 아이템을 제거하는 함수
     const removeItem = (itemCode) => {
-        axios.post('/api/mypge/cartDelete.do', {
+        axios.post('/api/mypage/cartDelete.do', {
             item_code : itemCode
         })
         .then(()=>{
@@ -156,7 +156,7 @@ import axios from 'axios';
     const productBuy = ()=>{
         if(selectedItemCodes.value.length > 0){
             axios.post('/api/mypage/productBuyJson.do', {
-            ...selectedItemCodes._value
+            ...selectedItemCodes.value
             })
             .then(()=>{
                 alert("결제가 완료되었습니다.")
@@ -186,7 +186,7 @@ import axios from 'axios';
   </script>
   
 
-<style>
+<style scoped>
   .container {
             width: 100%;
             padding-top: 20px;

@@ -15,6 +15,14 @@ import SupplyInfo from "@/views/SupplyInfo.vue";
 import WarehouseInfo from "@/views/Management/WarehouseInfo.vue";
 import OrderCompany from "@/views/Management/OrderCompany.vue";
 import UserInfo from "@/views/UserInfo.vue";
+import Product from "@/views/Product/Product.vue";
+import Order from "@/views/mypage/Order.vue";
+import Obtain from "@/views/Obtain.vue";
+import OrderChk from "@/views/Work/OrderChk.vue";
+import OrderList from "@/views/direction/OrderList.vue";
+import Return from "@/views/mypage/Return.vue";
+import DeliveryChk from "@/views/DeliveryChk.vue";
+import ReturnHistory from "@/views/ReturnHistory.vue";
 
 const routes = [
     {
@@ -67,6 +75,16 @@ const routes = [
                         path: "cart.do",
                         name: "cart",
                         component: Cart
+                    },
+                    {
+                        path: "order.do",
+                        name: "order",
+                        component: Order
+                    },
+                    {
+                        path: "return.do",
+                        name: "return",
+                        component: Return
                     }
                 ]
             },
@@ -99,6 +117,16 @@ const routes = [
                         path: "returnChk.do",
                         name: "returnChk",
                         component: ReturnChk
+                    },
+                    {
+                        path: "orderChk.do",
+                        name: "orderChk",
+                        component: OrderChk
+                    },
+                    {
+                        path: "deliveryChk.do",
+                        name: "deliveryChk",
+                        component: DeliveryChk
                     }
                 ]
             },
@@ -125,6 +153,44 @@ const routes = [
                         path: "userInfo.do",
                         name: "userInfo",
                         component: UserInfo
+                    }
+                ]
+            },
+            {
+                path: "product",
+                name: "product",
+                children: [
+                    {
+                        path: "product.do",
+                        name: "product",
+                        component: Product
+                    }
+                ]
+            },
+            {
+                path: "business",
+                name: "business",
+                children: [
+                    {
+                        path: "obtain.do",
+                        name: "obtain",
+                        component: Obtain
+                    },
+                    {
+                        path: "return.do",
+                        name: "return",
+                        component: ReturnHistory
+                    }
+                ]
+            },
+            {
+                path: "direction",
+                name: "direction",
+                children: [
+                    {
+                        path: "orderList.do",
+                        name: "orderList",
+                        component: OrderList
                     }
                 ]
             }
